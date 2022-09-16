@@ -1,0 +1,72 @@
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/ind.css') }}">
+
+<style type="text/css">
+  p{
+    color: red;
+  }
+</style>
+<link rel = "icon" href = "{{ url_for('static',filename='styles/fire.png') }}"
+        type = "image/x-icon">
+<title style="color: red;">
+ Streaks Sign Up
+</title>
+</head>
+<body style="background-image: url({{ url_for('static', filename='styles/snap.jpg') }})">
+ 
+<h3 style="color: red;text-align: center;" >{{data}}</h3>
+
+
+
+<div id="wrapper">
+  <div class="main-content">
+    <div class="header">
+      <img src="{{ url_for('static',filename='styles/image.png') }}" />
+    </div>
+    <form action="{{ url_for('insert') }}" method="post">
+    <div class="l-part">
+      <input type="text" placeholder="Username" name="user" class="input-1">
+      <div class="overlap-text">
+        <input type="password" placeholder="Password" id="password" value="" name="pass1" class="input-2" required>
+        <div class="overlap-text">
+        <input type="password" placeholder="Confirm Password" id="confirm_password"  value="" name="pass2" class="input-2" required/> <span id="sense"></span>
+      </div>
+      </div>
+      <input type="submit" value="Log in" class="btn"/>
+    </div>
+    </form>
+  </div>
+  <div class="sub-content">
+    <br><br>
+    <div class="s-part">
+
+       have an account?<a href="{{ url_for('login') }}">Log in</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+var password = document.getElementById("password");
+  var confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+var tmp = document.getElementById("sense");
+  if(password.value != confirm_password.value) {
+    
+    tmp.innerHTML="PASSWORDS DON'T MATCH<br><br>";
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    tmp.innerHTML=""
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
+
+</body>
+</html>

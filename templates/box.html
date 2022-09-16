@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/ind.css') }}">
+   <link rel = "icon" href = "{{ url_for('static',filename='styles/fire.png') }}"
+        type = "image/x-icon">
+<title style="color: red;">
+ Streaks Sign Up
+</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style type="text/css">
+      .logoutLblPos{
+background-color: red;
+ color: white;
+ border-radius: 8px;
+   position:fixed;
+   right:25px;
+   top:25px;
+}
+      .float-container {
+border: 3px solid #fff;
+    padding: 0px;
+    border-width: 0px;
+}
+.crap{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+#chal{
+
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+
+}
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    
+}  
+    </style>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example"  style="background-image: url({{ url_for('static', filename='styles/snap.jpg') }})">
+   
+
+<header>
+     
+    <nav class="navbar bg-light">
+      <div class="container-fluid" >
+        <a class="navbar-brand" style="color:red;width: 70%;text-align: center;font-family: serif;font-size: 30px;" >🔥 Streaks 🔥</a>
+        <form class="d-flex" action="{{ url_for('logout') }}" role="search">
+         
+          <button class="btn btn-outline-success" type="submit">Log Out</button>
+        </form>
+      </div>
+    </nav>
+  <!-- Background image -->
+</header>
+
+
+
+
+
+
+    <!-- Example Code -->
+   
+{% for i in range(0, len,2) %}
+  <div class="float-container">
+<form action="{{url_for('update')}}" method="post">
+          
+        
+    <div class="float-child">
+          <div class="card" >
+        <h5 class="card-header" style="font-style: all; color:#B03A2E ;">{{arr[i][0]}}</h5>
+        
+        <div class="card-body">
+          <h5 class="card-title">{{arr[i][2]}}🔥</h5>
+          <p class="card-text">{{arr[i][3]}}</p>
+          <input type="hidden" name="table" value="{{arr[i][0]}}" >
+          <input type="SUBMIT" name="table" class="btn btn-primary" value="{{arr[i][1]}}">
+          </form>
+        </div>
+      </div>
+     
+    </div>
+  {% if i+1<len %}
+  
+      <div class="float-child">
+            <div class="card" >
+          <h5 class="card-header" style="font-style: all; color:#B03A2E ;">{{arr[i+1][0]}}</h5>
+           <form action="{{url_for('update')}}" method="post">
+          <div class="card-body">
+              
+            <h5 class="card-title">{{arr[i+1][2]}}🔥</h5>
+            <p class="card-text">{{arr[i+1][3]}}</p>
+            <input type="hidden" name="table" value="{{arr[i+1][0]}}" >
+            <input type="SUBMIT" name="" class="btn btn-primary" value="{{arr[i+1][1]}}">
+          </form>
+          </div>
+        </div>
+        </div>
+    {% endif %}
+
+    </div>
+{% endfor%}
+
+
+<footer>
+  <a>
+  <div class="float-container"  style="text-align: center;border-width: 0px width:50%; ">
+  <button id="chal" type="submit" style="width: 100%;height: 100%;">CREATE NEW CHALLENGE</button>
+  </a>
+</div>
+</footer>
+
+
+
+
+
+
+
+
+
+<!----DROP--->
+
+
+<div id="myModal" class="modal" >
+
+  <!-- Modal content -->
+  
+  
+  <div class="modal-content" >
+    <span class="close">&times;</span>
+    <p>Please Fill the below form..</p>
+    <div id="wrapper">
+  <div class="main-content" style="width: 80%;">
+    <div class="header">
+      <img src="{{ url_for('static',filename='styles/image.png') }}" />
+    </div>
+    <form action="{{ url_for('create')}}" method="post">
+    <div class="l-part">
+      <input type="text" placeholder="Challenge Name" name="cname" class="input-1" />
+
+      <div class="overlap-text" >
+        <textarea  id="text" placeholder="Describe" name="cdesc" class="input-2" rows="4" cols="30"  ></textarea>
+        <div class="overlap-text">
+        <input type="text" placeholder="Number of days" name="days" class="input-2" />
+      </div>
+      </div>
+      <input type="submit" value="SUBMIT" class="btn" />
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+    <!-- SCript below-->
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("chal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+  window.history.replaceState( null, null, window.location.href );
+</script>
+    
+  </body>
+</html>

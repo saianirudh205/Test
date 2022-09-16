@@ -1,0 +1,46 @@
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Overpass+Mono" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/ind.css') }}">
+
+<link rel = "icon" href = "{{ url_for('static',filename='styles/fire.png') }}"
+        type = "image/x-icon">
+<title style="color: red;">
+ Streaks Sign Up
+</title>
+</head>
+<body style="background-image: url({{ url_for('static', filename='styles/snap.jpg') }})">
+
+    <h1 style="color: red;text-align: center;background-color: white;">{{data}}</h1>
+  
+
+
+<div id="wrapper">
+  <div class="main-content" style="border-radius: 10px;">
+    <div class="header">
+      <img src="{{ url_for('static',filename='styles/image.png') }}" />
+    </div>
+    <form action="{{ url_for('open') }}" method="post">
+    <div class="l-part">
+      <input type="text" name="user" placeholder="Username" class="input-1" />
+      <div class="overlap-text">
+        <input type="password" name="pass" placeholder="Password" class="input-2" />
+      </div>
+      <input type="submit" value="Log in" class="btn" />
+    </div>
+</form>
+  </div>
+  <div class="sub-content" style="border-radius: 10px;">
+    <div class="s-part">
+      Don't have an account?<a href="{{ url_for('sign') }}">Sign up</a>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    window.history.replaceState( null, null, window.location.href );
+</script>
+
+
+</body>
+</html>
